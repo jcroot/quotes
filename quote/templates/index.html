@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Multiple Choice Game</title>
+</head>
+<body>
+    <div class="container mx-auto mt-6 w-full">
+        <div class="border rounded border-gray-200 bg-white px-4 py-20 sm:px-6">
+          <div
+                  x-data="{ quotes: [] }"
+                  x-init="quotes = await (await fetch('/api/quotes')).json()"
+                  class="text-center font-semibold leading-6 text-gray-900 text-2xl">
+                <template x-for="quote in quotes">
+                    <span x-text="quote.quote"></span>
+                </template>
+                <div class="grid grid-cols-2 gap-4 items-center justify-between mt-6 ">
+                    <template x-for="author in quotes.authors">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mr-2">
+                            <span x-text="author.name"></span>
+                        </button>
+                    </template>
+                </div>
+          </div>
+        </div>
+    </div>
+    <div hx-get="/api/quotes" xh-swap=outerHTML"></div>
+</body>
+</html>
