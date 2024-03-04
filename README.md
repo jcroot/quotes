@@ -24,3 +24,28 @@ Develop a JavaScript application that interacts with your back-end endpoint to p
 1. Each quiz must present four unique author choices without any repetition.
 2. The correct author must always be included among the options, with their position randomized for each new question.
 
+## Installation
+
+This project uses Django Framework, Django Rest Framework, and Alpine.js.
+
+```bash
+  git clone git@github.com:jcroot/quotes.git
+  cd quotes
+  python -m venv venv
+  pip install -r requirements.txt
+  python manage.py migrate
+  python manage.py runserver
+```
+
+### Seed the database
+
+```bash
+  python manage.py seed_authors
+  python manage.py seed_quotes
+```
+
+### API Endpoints
+Get Random quote with authors
+```bash
+    /api/quotes
+```
