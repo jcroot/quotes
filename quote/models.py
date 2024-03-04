@@ -3,8 +3,9 @@ from django.db import models
 
 class AuthorManager(models.Manager):
 
-    def getFourRandomAuthors(self):
-        return self.get_queryset().order_by('?')[:4]
+    def getFourRandomAuthors(self, author_id):
+        authors = self.exclude(id=author_id).order_by('?')[:3]
+        return list(authors) + [self.get(id=author_id)]
 
 
 class Author(models.Model):
@@ -28,3 +29,9 @@ class Quote(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = QuoteManager()
+
+    def __str__(self):
+        return self.quote
+
+    def author_name(self):
+        return self.author.name

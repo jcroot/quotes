@@ -10,7 +10,7 @@ from quote.models import Quote, Author
 class QuoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quote
-        fields = ['quote', 'author', 'id']
+        fields = ['quote', 'author', 'id', 'author_name']
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -24,10 +24,10 @@ class QuoteViewSet(viewsets.ModelViewSet):
     serializer_class = QuoteSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = Quote.objects.getRandomQuote()
-        authors = Author.objects.getFourRandomAuthors()
+        quotes = Quote.objects.getRandomQuote()
+        authors = Author.objects.getFourRandomAuthors(quotes.author.id)
         data = {
-            'quote': QuoteSerializer(queryset).data,
+            'quote': QuoteSerializer(quotes).data,
             'authors': AuthorSerializer(authors, many=True).data
         }
         return Response(data)
