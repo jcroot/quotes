@@ -10,7 +10,7 @@ from quote.models import Quote, Author
 class QuoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quote
-        fields = ['quote', 'author', 'id', 'author_name']
+        fields = ['quote', 'id']
 
 
 class AuthorSerializer(serializers.ModelSerializer):
