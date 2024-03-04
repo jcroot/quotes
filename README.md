@@ -29,7 +29,7 @@ Develop a JavaScript application that interacts with your back-end endpoint to p
 This project uses Django Framework, Django Rest Framework, and Alpine.js.
 
 ```bash
-  git clone git@github.com:jcroot/quotes.git
+  git clone https://github.com/jcroot/quotes.git
   cd quotes
   python -m venv venv
   pip install -r requirements.txt
